@@ -1,0 +1,19 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8sdisallowhostpath
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sDisallowHostPath
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8sdisallowhostpath
+
+        violation[{"msg": msg}] {
+          volume := input.review.object.spec.volumes[_]
+          volume.hostPath
+          msg := sprintf("hostPath volume %v is not allowed: use emptyDir, configMap, secret or PVC instead", [volume.name])
+        }

@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Контекст — Умный дом" id="ctx-smarthome">
+    <mxGraphModel dx="1222" dy="862" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" value="&lt;b&gt;Диаграмма контекста новых сервисов «Умный дом»&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="560" x="320" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="boundary" parent="1" style="rounded=1;fontSize=13;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;spacing=10;dashPattern=8 4;" value="PropDevelopment" vertex="1">
+          <mxGeometry height="260" width="380" x="440" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="pd" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1166BB;strokeColor=#0E4D8C;fontColor=#ffffff;align=center;arcSize=10;" value="&lt;b style=&quot;font-size:15px&quot;&gt;PropDevelopment&lt;/b&gt;&lt;div&gt;[Software System]&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size:11px;color:#E6E6E6&quot;&gt;Предоставляет сервисы «Умный дом» собственникам через мобильное приложение: управление доступом, открытие дверей и шлагбаума, просмотр событий&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="280" x="490" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="owner" parent="1" style="html=1;fontSize=12;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;" value="&lt;b&gt;Собственник&lt;/b&gt;&lt;div&gt;[Person]&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size:11px;color:#cccccc&quot;&gt;Управляет умным домом через мобильное приложение: открывает двери и шлагбаум, управляет списками доступа, просматривает события&lt;/div&gt;" vertex="1">
+          <mxGeometry height="170" width="220" x="30" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="manager" parent="1" style="html=1;fontSize=12;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;" value="&lt;b&gt;Менеджер УК&lt;/b&gt;&lt;div&gt;[Person]&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size:11px;color:#cccccc&quot;&gt;Настраивает списки доступа к домофону и шлагбауму по жилому комплексу&lt;/div&gt;" vertex="1">
+          <mxGeometry height="170" width="220" x="10" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="partner" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;strokeColor=#736782;fontColor=#ffffff;align=center;arcSize=10;" value="&lt;b style=&quot;font-size:15px&quot;&gt;Платформа «Умный дом»&lt;/b&gt;&lt;div&gt;[Software System — партнёр]&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size:11px;color:#cccccc&quot;&gt;Внешняя платформа: видеодомофон, распознавание лиц и автомобильных номеров, управление шлагбаумом&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="280" x="1020" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="devices" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C8496;strokeColor=#736782;fontColor=#ffffff;align=center;arcSize=10;" value="&lt;b style=&quot;font-size:14px&quot;&gt;Устройства умного дома&lt;/b&gt;&lt;div&gt;[Software System]&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size:11px;color:#cccccc&quot;&gt;Домофоны и шлагбаумы на объектах недвижимости&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="280" x="1020" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="e_owner" edge="1" parent="1" source="owner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.3;" target="pd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_owner_l" connectable="0" parent="e_owner" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="Управляет умным домом через мобильное приложение" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mgr" edge="1" parent="1" source="manager" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.7;" target="pd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mgr_l" connectable="0" parent="e_mgr" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="Настраивает списки доступа" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_partner" edge="1" parent="1" source="pd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;startArrow=classic;endArrow=classic;" target="partner">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_partner_l" connectable="0" parent="e_partner" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="&lt;div&gt;Команды и списки доступа →&lt;/div&gt;&lt;div&gt;← События доступа&lt;/div&gt;&lt;div&gt;[HTTPS, mTLS, REST/вебхуки]&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_dev" edge="1" parent="1" source="partner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="devices">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_dev_l" connectable="0" parent="e_dev" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="Управляет устройствами" vertex="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

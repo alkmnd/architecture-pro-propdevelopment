@@ -1,0 +1,28 @@
+apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+  # Full request+response for sensitive core resources
+  - level: RequestResponse
+    verbs: ["create", "delete", "update", "patch", "get", "list"]
+    resources:
+      - group: ""
+        resources: ["pods", "secrets", "configmaps", "serviceaccounts"]
+
+  # Full request+response for RBAC changes (roles/bindings live in rbac.authorization.k8s.io)
+  - level: RequestResponse
+    verbs: ["create", "delete", "update", "patch", "get", "list"]
+    resources:
+      - group: "rbac.authorization.k8s.io"
+        resources: ["roles", "rolebindings", "clusterroles", "clusterrolebindings"]
+
+  # Gatekeeper constraint/templates changes — full body
+  - level: RequestResponse
+    verbs: ["create", "delete", "update", "patch"]
+    resources:
+      - group: "constraints.gatekeeper.sh"
+        resources: ["*"]
+      - group: "templates.gatekeeper.sh"
+        resources: ["constrainttemplates"]
+
+  # Everything else — metadata only
+  - level: Metadata

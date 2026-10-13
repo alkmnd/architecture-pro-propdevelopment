@@ -1,0 +1,215 @@
+{
+  "stats": {
+    "total": 125
+  },
+  "findings": {
+    "secret_access": [
+      {
+        "ts": "2026-10-13T14:39:59.224330Z",
+        "level": "RequestResponse",
+        "verb": "list",
+        "user": "minikube-user",
+        "impersonatedUser": null,
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "secrets",
+        "subresource": null,
+        "namespace": "kube-system",
+        "name": null,
+        "apiGroup": null,
+        "code": 200,
+        "reason": null,
+        "decision": "allow"
+      },
+      {
+        "ts": "2026-10-13T14:39:59.268798Z",
+        "level": "RequestResponse",
+        "verb": "list",
+        "user": "minikube-user",
+        "impersonatedUser": "system:serviceaccount:secure-ops:monitoring",
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "secrets",
+        "subresource": null,
+        "namespace": "kube-system",
+        "name": null,
+        "apiGroup": null,
+        "code": 403,
+        "reason": "Forbidden",
+        "decision": "forbid"
+      }
+    ],
+    "privileged_pod": [
+      {
+        "ts": "2026-10-13T14:39:59.334890Z",
+        "level": "RequestResponse",
+        "verb": "create",
+        "user": "minikube-user",
+        "impersonatedUser": null,
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "pods",
+        "subresource": null,
+        "namespace": "secure-ops",
+        "name": "privileged-pod",
+        "apiGroup": null,
+        "code": 201,
+        "reason": null,
+        "decision": "allow"
+      }
+    ],
+    "exec": [
+      {
+        "ts": "2026-10-13T14:39:59.426990Z",
+        "level": "Metadata",
+        "verb": "get",
+        "user": "minikube-user",
+        "impersonatedUser": null,
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "pods",
+        "subresource": "exec",
+        "namespace": "kube-system",
+        "name": "coredns-7d764666f9-mjgh2",
+        "apiGroup": null,
+        "code": 101,
+        "reason": null,
+        "decision": "allow"
+      }
+    ],
+    "rbac_escalation": [
+      {
+        "ts": "2026-10-13T14:39:57.339524Z",
+        "level": "Metadata",
+        "verb": "create",
+        "user": "minikube-user",
+        "impersonatedUser": null,
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "clusterrolebindings",
+        "subresource": null,
+        "namespace": null,
+        "name": "devops-user-binding",
+        "apiGroup": "rbac.authorization.k8s.io",
+        "code": 201,
+        "reason": null,
+        "decision": "allow"
+      },
+      {
+        "ts": "2026-10-13T14:39:57.343263Z",
+        "level": "Metadata",
+        "verb": "create",
+        "user": "minikube-user",
+        "impersonatedUser": null,
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "clusterrolebindings",
+        "subresource": null,
+        "namespace": null,
+        "name": "sec-user-binding",
+        "apiGroup": "rbac.authorization.k8s.io",
+        "code": 201,
+        "reason": null,
+        "decision": "allow"
+      },
+      {
+        "ts": "2026-10-13T14:39:57.346424Z",
+        "level": "Metadata",
+        "verb": "create",
+        "user": "minikube-user",
+        "impersonatedUser": null,
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "rolebindings",
+        "subresource": null,
+        "namespace": "development",
+        "name": "viewer-user-binding",
+        "apiGroup": "rbac.authorization.k8s.io",
+        "code": 201,
+        "reason": null,
+        "decision": "allow"
+      },
+      {
+        "ts": "2026-10-13T14:39:59.539473Z",
+        "level": "Metadata",
+        "verb": "create",
+        "user": "minikube-user",
+        "impersonatedUser": null,
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "rolebindings",
+        "subresource": null,
+        "namespace": "secure-ops",
+        "name": "escalate-binding",
+        "apiGroup": "rbac.authorization.k8s.io",
+        "code": 201,
+        "reason": null,
+        "decision": "allow"
+      }
+    ],
+    "impersonation": [
+      {
+        "ts": "2026-10-13T14:39:59.182465Z",
+        "level": "Metadata",
+        "verb": "get",
+        "user": "minikube-user",
+        "impersonatedUser": "system:serviceaccount:secure-ops:monitoring",
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": null,
+        "subresource": null,
+        "namespace": null,
+        "name": null,
+        "apiGroup": null,
+        "code": 200,
+        "reason": null,
+        "decision": "allow"
+      },
+      {
+        "ts": "2026-10-13T14:39:59.184479Z",
+        "level": "Metadata",
+        "verb": "create",
+        "user": "minikube-user",
+        "impersonatedUser": "system:serviceaccount:secure-ops:monitoring",
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "selfsubjectaccessreviews",
+        "subresource": null,
+        "namespace": null,
+        "name": null,
+        "apiGroup": "authorization.k8s.io",
+        "code": 201,
+        "reason": null,
+        "decision": "allow"
+      },
+      {
+        "ts": "2026-10-13T14:39:59.268798Z",
+        "level": "RequestResponse",
+        "verb": "list",
+        "user": "minikube-user",
+        "impersonatedUser": "system:serviceaccount:secure-ops:monitoring",
+        "sourceIPs": [
+          "192.168.49.1"
+        ],
+        "resource": "secrets",
+        "subresource": null,
+        "namespace": "kube-system",
+        "name": null,
+        "apiGroup": null,
+        "code": 403,
+        "reason": "Forbidden",
+        "decision": "forbid"
+      }
+    ]
+  }
+}

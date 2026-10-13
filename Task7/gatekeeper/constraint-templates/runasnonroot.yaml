@@ -1,0 +1,70 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8srequirerunasnonroot
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRequireRunAsNonRoot
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            roRootfs:
+              type: boolean
+              default: true
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srequirerunasnonroot
+
+        ro_rootfs := input.parameters.roRootfs
+
+        is_pod {
+          input.review.kind.kind == "Pod"
+        }
+
+        container[c] {
+          c := input.review.object.spec.containers[_]
+        }
+        container[c] {
+          c := input.review.object.spec.initContainers[_]
+        }
+
+        # runAsNonRoot must be true (pod or container level)
+        violation[{"msg": msg}] {
+          c := container[_]
+          not pod_or_container_run_as_non_root(c)
+          msg := sprintf("container %v must set runAsNonRoot: true (pod or container securityContext)", [c.name])
+        }
+
+        pod_or_container_run_as_non_root(c) {
+          c.securityContext.runAsNonRoot == true
+        }
+        pod_or_container_run_as_non_root(c) {
+          input.review.object.spec.securityContext.runAsNonRoot == true
+          not c.securityContext.runAsNonRoot == false
+        }
+
+        # runAsUser must not be 0 (root)
+        violation[{"msg": msg}] {
+          c := container[_]
+          c.securityContext.runAsUser == 0
+          msg := sprintf("container %v must not run as root (runAsUser=0 is forbidden)", [c.name])
+        }
+
+        violation[{"msg": msg}] {
+          c := container[_]
+          not c.securityContext.runAsUser
+          input.review.object.spec.securityContext.runAsUser == 0
+          msg := sprintf("container %v must not run as root (pod runAsUser=0 is forbidden)", [c.name])
+        }
+
+        # readOnlyRootFilesystem must be true
+        violation[{"msg": msg}] {
+          ro_rootfs == true
+          c := container[_]
+          not c.securityContext.readOnlyRootFilesystem == true
+          msg := sprintf("container %v must set readOnlyRootFilesystem: true", [c.name])
+        }
